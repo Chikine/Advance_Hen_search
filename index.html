@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance Search</title>
+    <style>
+        body {
+            background-color: coral;
+            font-size: 24px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* gap: 10px; */
+        }
+        .greet {
+            font-size: 100px !important;
+        }
+        .no-select {
+            user-select: none; /* Non-standard syntax for most browsers */
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+        }
+        .readMe {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 0.8;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        .readMe div {
+            background-color: black;
+            color:crimson;
+            font-weight: normal;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .readMe div:hover {
+            background-color: rgba(117, 218, 246, 0.69);
+            font-weight: bold;
+        }
+        #dropdown {
+            background-color: bisque;
+            color: cornflowerblue;
+            border-radius: 15px;
+            height: 30px;
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        #dropdown:hover {
+            background-color:darkorchid;
+        }
+
+        #dropdown-select {
+            position: absolute;
+            display: flex;
+            /* top: 0px;
+            left: 100%; */
+            top: 100%;
+            left: 0px;
+            width: 200px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color:darkslategray;
+            color:darkgoldenrod;
+            border-radius: inherit;
+            transition: all 0.2s ease-out;
+        }
+
+        #dropdown-select div:hover {
+            border-radius: inherit;
+            background-color: chartreuse;
+        }
+
+        #advanceOptions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 60px;
+        }
+        #advanceOptions select option {
+            background-color: orange;
+        }
+
+        #linkField {
+            background-color: black;
+            border: 5px green double;
+            height: 60px;
+            width: 600px;
+            color: green;
+        }
+
+        #informations {
+            width: 100%;
+            position: relative;
+            height: auto;
+            /* background-color: darksalmon; */
+        }
+        .bubble {
+            background-color: black;
+            color: aqua;
+            border: 2px white solid;
+            border-radius: 15px;
+            opacity: 1;
+            transition: color 0.2s;
+            padding: 5px;
+            margin: 5px;
+            white-space: nowrap;
+            display: inline-block; 
+        }
+        .bubble:hover {
+            color: yellowgreen;
+        }
+        .keyDiv {
+            justify-content: space-between;
+            width: 100%;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="greet">WelCome</span>
+        <h5 onclick="showReadMe()"><em class="no-select">Read Me!</em></h5>
+        <div id="dropdown">
+            <div id="currentChoose" class="no-select">source: ihentai</div>
+            <!-- <div id="dropdown-select">
+                <div>ihentai</div>
+                <div>ihentai</div>
+            </div> -->
+        </div>
+        <div id="advanceOptions">
+            redirect option:
+            <select id="tab"> 
+                <option value="normal">normal tab</option>
+                <option value="incognito" selected>incognito tab</option>
+                <option value="noJump">only get link</option>
+            </select>
+        </div>
+        <div>
+            link:
+            <div id="linkField"><span style="opacity: 0.6; pointer-events: none;"> -click me to get link (._. </span></div>
+        </div>
+    </div>
+    <div id="informations">
+
+    </div>
+    <script>
+        function showReadMe() {
+            console.log('read me!')
+            const newDiv = document.createElement('div')
+            newDiv.className = 'readMe'
+            //edit text if need
+            const text = 
+                ` this page is intended for finding haiten with ease
+                by searching with tags, artist, studio, parody, etc
+                the datas in this page will not update automatically
+                eo biet noi gi them...`
+            newDiv.innerHTML = `<div>${text.split('\n').join('</div>\n<div>')}</div>`
+            newDiv.onclick = () => {
+                newDiv.remove()
+            }
+            document.body.append(newDiv)
+        }
+    </script>
+    <script src="script.js" type="module"></script>
+    <script src="ihenData.js" type="module"></script>
+</body>
+</html>
