@@ -7,8 +7,8 @@ const helperCommonFunctions = {
     skibidi: num => console.log('skibidi ',num),
     floor: num => Math.floor(num),
     rand(from, to) {return this.floor(Math.random() * (to - from + 1) + from)},
-    max: num => Math.max(num),
-    min: num => Math.min(num),
+    max: (num1,num2) => Math.max(num1,num2),
+    min:( num1,num2) => Math.min(num1,num2),
     toN: s => (Number)(s),
     toS: a => `${a}`,
     createArrayMultiDimension: (Lengths, fill) => {

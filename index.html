@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advance Search</title>
+    <link rel="stylesheet" href="colorPalette.css">
     <style>
         body {
             background-color: coral;
@@ -133,12 +134,119 @@
             width: 100%;
             font-size: 18px;
         }
+
+        #userSupport {
+            margin-top: 10px;
+            width: 99%;
+            position: relative;
+            height: auto;
+            min-height: 200px;
+            border: 5px dotted black;
+        }
+        #search {
+            display: flex;
+            max-height: 28px;
+        }
+        #tagsSearch {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+        #instantSearch {
+            position: relative;
+            border: 1px black solid;
+            border-radius: 3px;
+            height: 100%;
+            aspect-ratio: 1;
+            justify-content: center;
+            align-items: center;
+        }
+        #instantSearch img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        .description {
+            white-space: nowrap;
+            display: inline-block; 
+            position: absolute;
+            left: 100%;
+            bottom: 100%;
+            opacity: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 10px;
+            transition: opacity 0.2s;
+            border: 1px solid yellow;
+        }
+        #instantSearch:hover .description {
+            opacity: 0.8;
+        }
+        #chosenTag {
+            font-size: 16px;
+        }
+        #ignoreTag {
+            font-size: 16px;
+        }
+        #choice {
+            width: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 30px;
+            position: relative;
+            background-color: green;
+            color: chocolate;
+            border: 1px solid black;
+
+        }
+        #choice:hover .description{
+            opacity: 0.8;
+        }
+        .trans-text:hover {
+            color: red;
+        }
+        .underline {
+            text-decoration: underline;
+        }
+        .fullScreen {
+            /* position: fixed; */
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center;
+            align-items: center; */
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+        }
+        .fullScreen a:hover {
+            background-color: yellow;
+            color: black;
+            font-weight: bold;
+        }
+        .fullScreen button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+        .fullScreen button:hover {
+            background-color: crimson;
+        }
+        /* .fullScreen iframe {
+            width: 600;
+            height: auto;
+        } */
     </style>
 </head>
 <body>
     <div class="container">
         <span class="greet">WelCome</span>
-        <h5 onclick="showReadMe()"><em class="no-select">Read Me!</em></h5>
+        <h5 onclick="showReadMe()"><em class="trans-text no-select">Read Me!</em></h5>
         <div id="dropdown">
             <div id="currentChoose" class="no-select">source: ihentai</div>
             <!-- <div id="dropdown-select">
@@ -149,14 +257,46 @@
         <div id="advanceOptions">
             redirect option:
             <select id="tab"> 
-                <option value="normal">normal tab</option>
-                <option value="incognito" selected>incognito tab</option>
-                <option value="noJump">only get link</option>
+                <option value="normal" selected>new tab</option>
+                <!-- <option value="here">show here</option> -->
+                <option value="list">show list</option>
+                <option value="noJump">only link</option>
             </select>
         </div>
         <div>
             link:
             <div id="linkField"><span style="opacity: 0.6; pointer-events: none;"> -click me to get link (._. </span></div>
+        </div>
+    </div>
+    <div id="userSupport">
+        <div id="search">
+            Search:
+            <div id="tagsSearch">
+                <select id="selector" class="ghostwhitebg">
+                    <option class="greenbg" value="default" selected>choose</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Search for tasks...">
+                <button id="instantSearch">
+                    <img src="./image/fast.png" style="height: 100%;">
+                    <div class="description">search in real time</div>
+                </button>
+                <button id="removeText">x</button>
+                <div id="choice">
+                    <span class="no-select" id="chose">chosen</span> 
+                    <div class="description">tap to change : choose/ignore tag</div>
+                </div>
+
+            </div>
+        </div>
+        <div>Chosen: 
+            <div id="chosenTag">
+                <!-- <div class="bubble no-select">grape</div> -->
+            </div>
+        </div>
+        <div>Ignore:
+            <div id="ignoreTag">
+                <!-- <div class="bubble no-select">yaoi</div> -->
+            </div>
         </div>
     </div>
     <div id="informations">
@@ -169,9 +309,9 @@
             newDiv.className = 'readMe'
             //edit text if need
             const text = 
-                ` this page is intended for finding haiten with ease
-                by searching with tags, artist, studio, parody, etc
-                the datas in this page will not update automatically
+                ` Ban muon tim truyen Hen vua y nhung web dom nen khong tim duoc?
+                Ban muon mot thu ngau nhien va bat ngo nhung web khong co chuc nang do?
+                Web nay se giup ban lay mot link random su dung chinh cac lua chon cua ban!
                 eo biet noi gi them...`
             newDiv.innerHTML = `<div>${text.split('\n').join('</div>\n<div>')}</div>`
             newDiv.onclick = () => {
@@ -182,5 +322,6 @@
     </script>
     <script src="script.js" type="module"></script>
     <script src="ihenData.js" type="module"></script>
+    <script src="nhenData.js" type="module"></script>
 </body>
 </html>
